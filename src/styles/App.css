@@ -1,0 +1,64 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar  {
+  background-color: #343f49;
+  margin-bottom: 10px;
+}
+
+.navbar-brand, .nav-link.active, .nav-link {
+  background-color: #343f49 !important; 
+  color: rgb(248, 248, 248) !important;
+}
+
+.input-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  height: 40px; 
+  padding: 5px; 
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.create-course-gp {
+  text-align: center;
+  margin-top: 20px; 
+  margin-bottom: 20px;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center; 
+  width: 100%;
+}
+
+.course-table-gp {
+  width: 100%; 
+  text-align: center;
+  max-width: 1100px;
+  border-collapse: collapse;
+  overflow-y: auto;
+}
