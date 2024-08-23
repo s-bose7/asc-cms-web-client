@@ -14,7 +14,9 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #fcf0e5;
 }
+
 
 .Navigation-bar {
   flex-shrink: 0;

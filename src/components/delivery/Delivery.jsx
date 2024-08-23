@@ -60,10 +60,10 @@ function Delivery() {
                     value={year}
                     onChange={handleYearChange}
                     placeholder="Year"
-                    style={{ marginRight: '10px' }}
+                    style={{ marginRight: '10px', width: '150px'}}
                 />
                 <label style={{ marginRight: '5px' }}>Semester:</label>
-                <select value={semester} onChange={handleSemesterChange}>
+                <select style={{ height: '28px', width: '50px' }} value={semester} onChange={handleSemesterChange}>
                     {[...Array(8).keys()].map(i => (
                         <option key={i + 1} value={i + 1}>{i + 1}</option>
                     ))}
