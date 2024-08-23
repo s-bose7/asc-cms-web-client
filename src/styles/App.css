@@ -1,7 +1,23 @@
-.main-content {
+/* .main-content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+*/
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.Navigation-bar {
+  flex-shrink: 0;
 }
 
 .navbar  {
@@ -12,6 +28,11 @@
 .navbar-brand, .nav-link.active, .nav-link {
   background-color: #343f49 !important; 
   color: rgb(248, 248, 248) !important;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
 }
 
 .input-container {
@@ -37,18 +58,7 @@
   cursor: pointer;
 }
 
-.form-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.create-course-gp {
-  text-align: center;
-  margin-top: 20px; 
-  margin-bottom: 20px;
-}
-
+/* 
 .table-container {
   display: flex;
   justify-content: center; 
@@ -61,4 +71,46 @@
   max-width: 1100px;
   border-collapse: collapse;
   overflow-y: auto;
+} */
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.create-course-gp {
+  text-align: center;
+  margin-top: 20px; 
+  margin-bottom: 20px;
+}
+
+.footer-com {
+  background-color: #343f49;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  flex-shrink: 0;
+}
+
+.github-container a {
+  color: white;
+  text-decoration: none;
+}
+
+.github-container a:hover {
+  text-decoration: underline;
+}
+
+.github-container i {
+  margin-right: 5px;
+}
+
+.footer-com p {
+  margin: 5px 0;
+}
+
+.footer-com p a {
+  color: white;
+  text-decoration: none;
 }

@@ -1,14 +1,16 @@
 import React from 'react';
 
-function CourseDetails({ course, onClose }) {
-    if (!course) return null;
+function DeliveryDetails({ delivery, onClose }) {
+    if (!delivery) return null;
 
     return (
         <div style={cardStyles}>
             <button onClick={onClose} style={closeButtonStyles}>X</button>
-            <h2>{course.courseTitle}</h2>
-            <p><strong>Course Code:</strong> {course.courseCode}</p>
-            <p><strong>Description:</strong> {course.courseDescription}</p>
+            <h2>{delivery.course.courseTitle}</h2>
+            <p><strong>Course Code: </strong> {delivery.course.courseCode}</p>
+            <p><strong>Description: </strong> {delivery.course.courseDescription}</p>
+            <p><strong>Year of Delivery: </strong>{delivery.year}</p>
+            <p><strong>Semester of Delivery: </strong>{delivery.semester}</p>
         </div>
     );
 }
@@ -34,4 +36,4 @@ const closeButtonStyles = {
     cursor: 'pointer',
 };
 
-export default CourseDetails;
+export default DeliveryDetails;
