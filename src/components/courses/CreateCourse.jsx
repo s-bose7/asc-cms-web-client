@@ -27,7 +27,21 @@ function CreateCourse() {
             },
             body: JSON.stringify(newCourse),
         })
-        .then(response => response.json())
+        .then(response => {
+            // Check if the request was successful
+            console.log(response.status)
+            if (response.ok) {
+                return response.json();
+            } else {
+                // Handle specific status codes
+                switch (response.status) {
+                    case 409:
+                        throw new Error('Course already exists');
+                    default:
+                        throw new Error('Internal Server Error');
+                }
+            }
+        })
         .then(data => {
             setError('');
             setSuccess('Course created successfully!');
@@ -39,8 +53,8 @@ function CreateCourse() {
             setCourseDescription('');
         })
         .catch(error => {
-            console.error('Error creating course:', error);
-            setError('Failed to create course. Please try again.');
+            console.error(error);
+            setError(error.message);
             setSuccess('');
         });
     };
