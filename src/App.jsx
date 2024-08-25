@@ -18,6 +18,12 @@ function App() {
             </div>
             <div className="main-content"> 
                 <Routes>
+                    <Route path="/" element={
+                        <div className="home">
+                            <h1>Welcome to ASC Courses</h1>
+                            <p>Select an option from the top bar to get started.</p>
+                        </div>
+                    } />
                     <Route path="/courses" element={
                         <>
                             <div className="form-container">

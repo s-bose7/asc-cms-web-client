@@ -38,6 +38,11 @@ html, body {
   margin-bottom: 100px;
 }
 
+.home {
+  margin-top: 100px;
+  text-align: center;
+}
+
 .input-container {
   display: flex;
   flex-wrap: wrap;
