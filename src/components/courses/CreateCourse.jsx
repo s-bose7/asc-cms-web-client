@@ -27,27 +27,17 @@ function CreateCourse() {
             },
             body: JSON.stringify(newCourse),
         })
-        .then(response => {
-            // Check if the request was successful
-            console.log(response.status)
+        .then(async response => {
             if (response.ok) {
                 return response.json();
             } else {
-                // Handle specific status codes
-                switch (response.status) {
-                    case 409:
-                        throw new Error('Course already exists');
-                    default:
-                        throw new Error('Internal Server Error');
-                }
+                const errorData = await response.json();
+                throw new Error(errorData.message);
             }
         })
         .then(data => {
             setError('');
             setSuccess('Course created successfully!');
-            // Refresh the course list after adding a new course
-            // onCourseCreate(); 
-            // Clear form fields
             setCourseTitle('');
             setCourseCode('');
             setCourseDescription('');
