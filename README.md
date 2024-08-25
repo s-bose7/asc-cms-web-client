@@ -1,5 +1,10 @@
 # asc-courses-frontend  
 
+## Prerquisite
+- node@v20.16.0
+- npm@v10.8.1
+
+
 ## Running locally
 ```bash
 # Get the code
