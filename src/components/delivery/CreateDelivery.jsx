@@ -30,10 +30,10 @@ function CreateDelivery() {
                 // If the course exists, proceed to create the course instance
                 const newCourseDelivery = {
                     course: {
-                        id: courseData.id,
-                        courseTitle: courseData.courseTitle,
-                        courseCode: courseData.courseCode,
-                        courseDescription: courseData.courseDescription
+                        id: courseData.data.id,
+                        courseTitle: courseData.data.courseTitle,
+                        courseCode: courseData.data.courseCode,
+                        courseDescription: courseData.data.courseDescription
                     },
                     year: courseYear,
                     semester: courseSemester
@@ -47,7 +47,12 @@ function CreateDelivery() {
                     body: JSON.stringify(newCourseDelivery),
                 });
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to create course delivery');
+                }
+                return response.json();
+            })
             .then(data => {
                 setError('');
                 setSuccess('Course Delivery created successfully!');
@@ -64,7 +69,7 @@ function CreateDelivery() {
                 }
                 setSuccess('');
             });
-    };    
+    };        
 
     return (
     <>
