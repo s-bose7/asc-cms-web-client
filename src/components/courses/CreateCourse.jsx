@@ -37,7 +37,8 @@ function CreateCourse() {
         })
         .then(data => {
             setError('');
-            setSuccess('Course created successfully!');
+            setSuccess('Course created');
+            setTimeout(() => setSuccess(''), 1200);
             setCourseTitle('');
             setCourseCode('');
             setCourseDescription('');

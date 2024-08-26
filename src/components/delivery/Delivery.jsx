@@ -2,12 +2,19 @@ import React, { useEffect, useState } from 'react';
 
 import DeliveryDetails from "./DeliveryDetails";
 import CreateDelivery from './CreateDelivery';
+import ErrorMessage from '../commons/ErrorMessage';
+import LoadingMessage from '../commons/LoadingMessage';
+import SuccessMessage from '../commons/SuccessMessage';
+
 
 function Delivery() {
     const [delivery, setDelivery] = useState([]);
     const [selectedDelivery, setSelectedDelivery] = useState(null);
     const [year, setYear] = useState('2022'); // Default year
     const [semester, setSemester] = useState('1'); // Default semester
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         fetchDelivery();
@@ -29,17 +36,28 @@ function Delivery() {
     };
 
     const handleRemove = (id) => {
+        setIsLoading(true);
         fetch(`http://localhost:8080/api/v1/instances/${year}/${semester}/${id}`, {
             method: 'DELETE',
         })
         .then(response => {
-            if (response.ok) {
-                fetchDelivery();
-            } else {
-                console.error('Failed to remove course');
-            }
+            setTimeout(() => { 
+                if (response.ok) {
+                    setSuccess('Session Removed');
+                    fetchDelivery(); 
+                    setTimeout(() => setSuccess(''), 1000); // Clear success message after 1 second
+                } else {
+                    setError('Failed');
+                    console.error('Failed to remove course session');
+                    setTimeout(() => setError(''), 1000); // Clear error message after 1 second
+                }
+                setIsLoading(false);
+            }, 1500);
         })
-        .catch(error => console.error('Error removing course:', error));
+        .catch(error => {
+            console.error('Error removing course:', error);
+            setIsLoading(false);
+        });
     };
 
     const handleYearChange = (e) => {
@@ -69,36 +87,41 @@ function Delivery() {
                     ))}
                 </select>
             </div>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Course Title</th>
-                        <th scope="col">Year-Sem</th>
-                        <th scope="col">Code</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody className="table-group-divider">
-                    {delivery.length > 0 ? (
-                        delivery.map(delivery => (
-                            <tr key={delivery.id}>
-                                <td>
-                                    <span onClick={() => handleDeliveryClick(delivery)} style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>
-                                        {delivery.course.courseTitle}
-                                    </span>
-                                </td>
-                                <td>{delivery.year}-{delivery.semester}</td>
-                                <td>{delivery.course.courseCode}</td>
-                                <td><button onClick={() => handleRemove(delivery.id)}>Remove</button></td>
-                            </tr>
-                        ))
-                    ) : (
+            <div style={styles.container}>
+                {isLoading && <LoadingMessage message="Removing..." />}
+                {success && !isLoading && <SuccessMessage message={success} />}
+                {error && !isLoading && <ErrorMessage message={error} />}
+                <table className="table">
+                    <thead>
                         <tr>
-                            <td colSpan="4" style={{ textAlign: 'center', fontStyle: 'italic' }}>Filter Courses by Year and Semester</td>
+                            <th scope="col">Course Title</th>
+                            <th scope="col">Year-Sem</th>
+                            <th scope="col">Code</th>
+                            <th scope="col">Action</th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody className="table-group-divider">
+                        {delivery.length > 0 ? (
+                            delivery.map(delivery => (
+                                <tr key={delivery.id}>
+                                    <td>
+                                        <span onClick={() => handleDeliveryClick(delivery)} style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>
+                                            {delivery.course.courseTitle}
+                                        </span>
+                                    </td>
+                                    <td>{delivery.year}-{delivery.semester}</td>
+                                    <td>{delivery.course.courseCode}</td>
+                                    <td><button onClick={() => handleRemove(delivery.id)}>Remove</button></td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="4" style={{ textAlign: 'center', fontStyle: 'italic' }}>Filter Courses by Year and Semester</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
             {selectedDelivery && (
                 <DeliveryDetails
                     delivery={selectedDelivery} 
@@ -108,5 +131,11 @@ function Delivery() {
         </div>
     );
 }
+
+const styles = {
+    container: {
+        position: 'relative',
+    },
+};
 
 export default Delivery;

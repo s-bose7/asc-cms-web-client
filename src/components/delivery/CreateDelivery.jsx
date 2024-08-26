@@ -55,7 +55,8 @@ function CreateDelivery() {
             })
             .then(data => {
                 setError('');
-                setSuccess('Course Delivery created successfully!');
+                setSuccess('Course session created');
+                setTimeout(() => setSuccess(''), 1200);
                 setCourseCode('');
                 setCourseYear('');
                 setCourseSemester('');
