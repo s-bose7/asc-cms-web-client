@@ -13,8 +13,17 @@ function Courses() {
 
     const fetchCourses = () => {
         fetch('http://localhost:8080/api/v1/courses')
-            .then(response => response.json())
-            .then(data => setCourses(data))
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                if (Array.isArray(data.data)) {
+                    setCourses(data.data);
+                } else {
+                    console.error('No courses found');
+                    setCourses([]);  
+                }
+            })
             .catch(error => console.error('Error fetching courses:', error));
     };
 
@@ -53,17 +62,23 @@ function Courses() {
                     </tr>
                 </thead>
                 <tbody className="table-group-divider">
-                    {courses.map(course => (
-                        <tr key={course.id}>
-                            <td>
-                                <span onClick={() => handleCourseClick(course)} style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>
-                                    {course.courseTitle}
-                                </span>
-                            </td>
-                            <td>{course.courseCode}</td>
-                            <td><button onClick={() => handleRemove(course.id)}>Remove</button></td>
+                    {courses.length > 0 ? (
+                        courses.map(course => (
+                            <tr key={course.id}>
+                                <td>
+                                    <span onClick={() => handleCourseClick(course)} style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>
+                                        {course.courseTitle}
+                                    </span>
+                                </td>
+                                <td>{course.courseCode}</td>
+                                <td><button onClick={() => handleRemove(course.id)}>Remove</button></td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="3">No courses available</td>
                         </tr>
-                    ))}
+                    )}
                 </tbody>
             </table>
             {selectedCourse && (
