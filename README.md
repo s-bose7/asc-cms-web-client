@@ -1,4 +1,4 @@
-# asc-courses-frontend  
+# asc-cms-web-client
 
 ## Prerquisite
 - node@v20.16.0
@@ -8,10 +8,10 @@
 ## Running locally
 ```bash
 # Get the code
-git clone https://github.com/s-bose7/asc-courses-frontend.git
+git clone https://github.com/s-bose7/asc-cms-web-client.git
 
 # Move to project directory
-cd asc-courses-frontend/
+cd asc-cms-web-client/
 
 # Run server
 npn run dev
