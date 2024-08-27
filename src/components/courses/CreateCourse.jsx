@@ -17,9 +17,7 @@ function CreateCourse() {
             setSuccess('');
             return;
         }
-
         const newCourse = {courseTitle, courseCode, courseDescription};
-
         fetch('http://localhost:8080/api/v1/courses', { 
             method: 'POST',
             headers: {
@@ -38,7 +36,7 @@ function CreateCourse() {
         .then(data => {
             setError('');
             setSuccess('Course created');
-            setTimeout(() => setSuccess(''), 1200);
+            setTimeout(() => setSuccess(''), 4000);
             setCourseTitle('');
             setCourseCode('');
             setCourseDescription('');
@@ -46,6 +44,7 @@ function CreateCourse() {
         .catch(error => {
             console.error(error);
             setError(error.message);
+            setTimeout(() => setError(''), 5000);
             setSuccess('');
         });
     };

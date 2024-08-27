@@ -47,9 +47,10 @@ function CreateDelivery() {
                     body: JSON.stringify(newCourseDelivery),
                 });
             })
-            .then(response => {
+            .then(async response => {
                 if (!response.ok) {
-                    throw new Error('Failed to create course delivery');
+                    const errorData = await response.json();
+                    throw new Error(errorData.message);
                 }
                 return response.json();
             })
@@ -62,12 +63,7 @@ function CreateDelivery() {
                 setCourseSemester('');
             })
             .catch(error => {
-                if (error.message === 'Course not found') {
-                    setError('Course does not exist.');
-                } else {
-                    console.error('Error creating course delivery:', error);
-                    setError('Failed to create course delivery.');
-                }
+                setError(error.message);
                 setSuccess('');
             });
     };        

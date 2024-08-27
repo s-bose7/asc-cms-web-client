@@ -23,7 +23,7 @@ function Delivery() {
     const fetchDelivery = () => {
         fetch(`http://localhost:8080/api/v1/instances/${year}/${semester}`)
             .then(response => response.json())
-            .then(data => setDelivery(data))
+            .then(data => setDelivery(data.data))
             .catch(error => console.error('Error fetching courses:', error));
     };
 
