@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 import DeliveryDetails from "./DeliveryDetails";
 import CreateDelivery from './CreateDelivery';
 import ErrorMessage from '../commons/ErrorMessage';
@@ -70,8 +73,7 @@ function Delivery() {
 
     return (
         <div>
-            <h3>Course Instances</h3>
-            <div>
+            <div style={{marginBottom:20}}>
                 <label style={{ marginRight: '5px' }}>Year:</label>
                 <input
                     type="number"
@@ -111,7 +113,7 @@ function Delivery() {
                                     </td>
                                     <td>{delivery.year}-{delivery.semester}</td>
                                     <td>{delivery.course.courseCode}</td>
-                                    <td><button onClick={() => handleRemove(delivery.id)}>Remove</button></td>
+                                    <td><Button onClick={() => handleRemove(delivery.id)} variant="contained" endIcon={<DeleteIcon />}>Remove</Button></td>
                                 </tr>
                             ))
                         ) : (

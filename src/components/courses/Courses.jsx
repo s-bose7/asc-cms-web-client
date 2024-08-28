@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react';
+
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 import CreateCourse from './CreateCourse';  
 import CourseDetails from './CourseDetails';
 import ErrorMessage from '../commons/ErrorMessage';
@@ -65,7 +69,6 @@ function Courses() {
 
     return (
         <div>
-            <h3>Courses Available</h3>
             <div style={ {position: 'relative'} }>
                 {isLoading && <LoadingMessage message="Removing..." />}
                 {success && !isLoading && <SuccessMessage message={success} />}
@@ -74,7 +77,8 @@ function Courses() {
                     <thead>
                         <tr>
                             <th scope="col">Course Title</th>
-                            <th scope="col">Course Code</th>
+                            <th scope="col">Code</th>
+                            <th scope="col">Date Added</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -88,12 +92,13 @@ function Courses() {
                                         </span>
                                     </td>
                                     <td>{course.courseCode}</td>
-                                    <td><button onClick={() => handleRemove(course.id)}>Remove</button></td>
+                                    <td></td>
+                                    <td><Button onClick={() => handleRemove(course.id)} variant="contained" endIcon={<DeleteIcon />}>Remove</Button></td>
                                 </tr>
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="3">No courses available</td>
+                                <td colSpan="4" style={{textAlign:'center', fontStyle: 'italic'}}>No courses available</td>
                             </tr>
                         )}
                     </tbody>
