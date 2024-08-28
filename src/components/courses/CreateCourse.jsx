@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
+
 
 function CreateCourse() {
     const [courseTitle, setCourseTitle] = useState('');
@@ -52,7 +55,6 @@ function CreateCourse() {
     return (
     <>
         <div>
-            <h3>Create Course</h3>
             {error && <div style={{ color: 'red' }}>{error}</div>}
             {success && <div style={{ color: 'green' }}>{success}</div>}
             <form onSubmit={handleSubmit}>
@@ -87,7 +89,7 @@ function CreateCourse() {
                             className="input-field"
                         />
                     </div>
-                    <button type="submit" className="submit-button">Add Course</button>
+                    <Button type="submit" variant="outlined" startIcon={<AddIcon />}>Create</Button>
                 </div>
             </form>
         </div>

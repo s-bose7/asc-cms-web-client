@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
 
 function CreateDelivery() {
     const [courseCode, setCourseCode] = useState('');
@@ -71,7 +73,6 @@ function CreateDelivery() {
     return (
     <>
         <div>
-            <h3>Create Course Instance</h3>
             {error && <div style={{ color: 'red' }}>{error}</div>}
             {success && <div style={{ color: 'green' }}>{success}</div>}
             <form onSubmit={handleSubmit}>
@@ -91,7 +92,7 @@ function CreateDelivery() {
                             type="text"
                             value={courseYear}
                             onChange={(e) => setCourseYear(e.target.value)}
-                            placeholder="Course Year"
+                            placeholder="Year"
                             required
                             className="input-field"
                         />
@@ -101,12 +102,12 @@ function CreateDelivery() {
                             type="text"
                             value={courseSemester}
                             onChange={(e) => setCourseSemester(e.target.value)}
-                            placeholder="Course Semester"
+                            placeholder="Semester"
                             required
                             className="input-field"
                         />
                     </div>
-                    <button type="submit" className="submit-button">Add Instance</button>
+                    <Button type="submit" variant="outlined" startIcon={<AddIcon />}>Create</Button>
                 </div>
             </form>
         </div>
