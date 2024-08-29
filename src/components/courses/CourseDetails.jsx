@@ -6,9 +6,11 @@ function CourseDetails({ course, onClose }) {
     return (
         <div style={cardStyles}>
             <button onClick={onClose} style={closeButtonStyles}>X</button>
+
             <h2>{course.courseTitle}</h2>
-            <p><strong>Course Code:</strong> {course.courseCode}</p>
+            <p><strong>{course.courseCode}</strong></p>
             <p><strong>Description:</strong> {course.courseDescription}</p>
+            
         </div>
     );
 }
@@ -18,9 +20,9 @@ const cardStyles = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: '#cabcae',
+    backgroundColor: '#d8d8d8',
     padding: '20px',
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 5)',
     zIndex: 1000,
     maxWidth: '600px',
     width: '100%',
