@@ -48,11 +48,11 @@ function Delivery() {
                 if (response.ok) {
                     setSuccess('Session Removed');
                     fetchDelivery(); 
-                    setTimeout(() => setSuccess(''), 1000); // Clear success message after 1 second
+                    setTimeout(() => setSuccess(''), 1500); 
                 } else {
                     setError('Failed');
                     console.error('Failed to remove course session');
-                    setTimeout(() => setError(''), 1000); // Clear error message after 1 second
+                    setTimeout(() => setError(''), 1500);
                 }
                 setIsLoading(false);
             }, 1500);
@@ -90,7 +90,7 @@ function Delivery() {
                 </select>
             </div>
             <div style={styles.container}>
-                {isLoading && <LoadingMessage message="Removing..." />}
+                {isLoading && <LoadingMessage message="Deleting..." />}
                 {success && !isLoading && <SuccessMessage message={success} />}
                 {error && !isLoading && <ErrorMessage message={error} />}
                 <table className="table">
@@ -113,7 +113,14 @@ function Delivery() {
                                     </td>
                                     <td>{delivery.year}-{delivery.semester}</td>
                                     <td>{delivery.course.courseCode}</td>
-                                    <td><Button onClick={() => handleRemove(delivery.id)} variant="contained" endIcon={<DeleteIcon />}>Remove</Button></td>
+                                    <td>
+                                        <Button 
+                                            onClick={() => handleRemove(delivery.id)} 
+                                            variant="outlined"
+                                            size="small"
+                                            startIcon={<DeleteIcon />}>Remove
+                                        </Button>
+                                    </td>
                                 </tr>
                             ))
                         ) : (

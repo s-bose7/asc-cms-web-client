@@ -59,7 +59,7 @@ function CreateDelivery() {
             .then(data => {
                 setError('');
                 setSuccess('Course session created');
-                setTimeout(() => setSuccess(''), 1200);
+                setTimeout(() => setSuccess(''), 4000);
                 setCourseCode('');
                 setCourseYear('');
                 setCourseSemester('');
@@ -67,6 +67,7 @@ function CreateDelivery() {
             .catch(error => {
                 setError(error.message);
                 setSuccess('');
+                setTimeout(() => setError(''), 5000);
             });
     };        
 

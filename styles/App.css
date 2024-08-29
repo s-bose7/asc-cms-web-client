@@ -14,7 +14,7 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #d1cfcd;
+  background-color: #efefef;
 }
 
 
@@ -65,7 +65,6 @@ html, body {
   border-radius: 5px;
   cursor: pointer;
 }
-
 
 .table-container {
   display: flex;
