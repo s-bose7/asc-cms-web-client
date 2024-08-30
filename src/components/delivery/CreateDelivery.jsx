@@ -36,6 +36,7 @@ function CreateDelivery() {
             courseTitle: courseData.data.courseTitle,
             courseCode: courseData.data.courseCode,
             courseDescription: courseData.data.courseDescription,
+            createdAt: courseData.data.createdAt
           },
           year: courseYear,
           semester: courseSemester,
