@@ -202,7 +202,7 @@ function Delivery() {
                       colSpan={4}
                       style={{ textAlign: "center", fontStyle: "italic" }}
                     >
-                      Filter Courses By Year and Semester
+                      No Sessions Found. Filter Sessions By Year and Semester
                     </TableCell>
                   </TableRow>
                 )}
